@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  app:
+    image: '${IMAGE_DEVELOPMENT}'
+    build:
+      context: ./
+      target: '${TARGET_DEVELOPMENT}'
+    entrypoint: bash -c '${COMMAND_DEVELOPMENT}'
+    ports:
+      - '${PORT_HOST}:${PORT_APP}'
+    volumes:
+      - './:/app'
