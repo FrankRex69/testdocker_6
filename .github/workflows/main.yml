@@ -1,0 +1,17 @@
+name: Deploy - main
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+    
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest 
+    name: Build and Push image
+    steps:
+      - uses: actions/checkout@v3 
+      - name: Build & Push image
+        run: |
+          docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
+          docker tag name-development:tag-development 3481974/name-development:tag-development
+          docker push 3481974/name-development:tag-development
