@@ -1,11 +1,11 @@
 version: '3.4'
 services:
   app:
-    image: '${IMAGE_DEVELOPMENT}'
+    image: '${IMAGE}'
     build:
       context: ./
-      target: '${TARGET_DEVELOPMENT}'
-    entrypoint: bash -c '${COMMAND_LOCAL}'
+      target: '${TARGET}'
+    entrypoint: bash -c '${COMMAND}'
     ports:
       - '${PORT_HOST}:${PORT_APP}'
     volumes:
