@@ -1,0 +1,10 @@
+PORT_APP = 3000
+PORT_HOST = 3999
+
+IMAGE_LOCAL = "name-local:tag-local"
+TARGET_LOCAL = "local"
+COMMAND_LOCAL = "npm install && npm run dev"
+
+IMAGE_DEVELOPMENT = "name-development:tag-development"
+TARGET_DEVELOPMENT = "development"
+COMMAND_DEVELOPMENT = "npm install && npm run start"
