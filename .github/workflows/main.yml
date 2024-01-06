@@ -15,3 +15,13 @@ jobs:
           docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
           docker build . -t docker.io/3481974/name-development:tag-development
           docker push 3481974/name-development:tag-development
+  deploy:
+    runs-on: ubuntu-latest
+    name: deploy in Ubuntu server
+    steps:
+      - uses: actions/checkout@v3 
+      - name: Deploy
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${{secrets.USER_NAME}}@${{secrets.SSH_HOST_PROD}} '
+    
