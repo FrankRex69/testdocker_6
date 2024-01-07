@@ -1,0 +1,19 @@
+name: SSH Action Test
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Core2Goal/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.USER_NAME }}
+          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            touch 333.txt
+            echo "Hello World"
