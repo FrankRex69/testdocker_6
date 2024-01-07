@@ -7,7 +7,7 @@ console.log(`http://localhost:${process.env.PORT_HOST}`);
 
 app.get('/', function (req, res) {  
 
-  res.send('Hello World testDocker !!! ?? ## www ooo ggg hhh')
+  res.send('Hello World testDocker.')
 })
 
 app.listen(port_app)
