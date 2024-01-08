@@ -1,12 +1,23 @@
-name: Deploy - main-dev
+name: Deploy
 on:
   pull_request:
     branches: [ main ]
     types: [ closed ]
-    
+
 jobs:
+  Build_image_and_publish:
+    runs-on: ubuntu-latest 
+    name: Build and Push image
+    steps:
+      - uses: actions/checkout@v3 
+      - name: Build & Push image
+        run: |
+          docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
+          docker build . -t docker.io/3481974/name-development:tag-development
+          docker push 3481974/name-development:tag-development
+          
   Deploy:
-    name: Deploy to EC2
+    name: Deploy to main
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest    
     steps:
@@ -15,7 +26,7 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${{secrets.USER_NAME}}@${{secrets.SSH_HOST_PROD}} '
-          touch 55555.txt
-          echo "Hello World 55555"
+          touch 666666.txt
+          echo "Hello World 666666"
           '
 
