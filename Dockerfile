@@ -1,5 +1,5 @@
 # Use the Node.js image for the local
-FROM node:10.15 AS local
+FROM node:18.19 AS local
 
 # Set the working directory. If it doesn't exists, it'll be created
 WORKDIR /app
@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . /app
 
 # Use the Node.js image for the deployment
-FROM node:10.15-slim AS development
+FROM node:18.19-slim AS development
 
 # Set the working directory. If it doesn't exists, it'll be created
 WORKDIR /app
