@@ -17,6 +17,7 @@ jobs:
           docker push 3481974/name-development:tag-development
           
   Deploy:
+    needs: Build_image_and_publish
     name: Deploy to main
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest    
