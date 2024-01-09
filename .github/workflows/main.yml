@@ -27,9 +27,9 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${{secrets.USER_NAME}}@${{secrets.SSH_HOST_PROD}} '
-          touch 88.txt
+          touch 999999999.txt
           docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
-          docker build . -t docker.io/3481974/name-development:tag-development
-          docker push 3481974/name-development:tag-development
+          docker pull 3481974/name-development:tag-development
+          docker run -p 3999:3000 -d 3481974/name-development:tag-development
           '
 
