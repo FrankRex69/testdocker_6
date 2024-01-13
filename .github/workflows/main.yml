@@ -1,27 +1,35 @@
-name: Deploy - main
+name: Deploy
 on:
   pull_request:
     branches: [ main ]
     types: [ closed ]
-    
+
 jobs:
-  build_and_publish:
+  Build_image_and_publish:
     runs-on: ubuntu-latest 
     name: Build and Push image
     steps:
-      - uses: actions/checkout@v2 
+      - uses: actions/checkout@v3 
       - name: Build & Push image
         run: |
           docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
           docker build . -t docker.io/3481974/name-development:tag-development
           docker push 3481974/name-development:tag-development
-  deploy:
-    runs-on: ubuntu-latest
-    name: deploy in Ubuntu server
+          
+  Deploy:
+    needs: Build_image_and_publish
+    name: Deploy to main
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest    
     steps:
-      - uses: actions/checkout@v3 
-      - name: Deploy
+      - uses: actions/checkout@v2 
+      - name: Build & Deploy      
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${{secrets.USER_NAME}}@${{secrets.SSH_HOST_PROD}} '
-    
+          touch 999999999.txt
+          docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
+          docker pull 3481974/name-development:tag-development
+          docker run -p 3897:4000 -d 3481974/name-development:tag-development
+          '
+
