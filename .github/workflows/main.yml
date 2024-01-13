@@ -13,7 +13,7 @@ jobs:
       - name: Build & Push image
         run: |
           docker login -u "francesco.re69@gmail.com" -p "Lillone19" docker.io
-          docker build . -t docker.io/3481974/name-development:tag-development
+          docker build -t docker.io/3481974/name-development:tag-development --target development .
           docker push 3481974/name-development:tag-development
           
   Deploy:
