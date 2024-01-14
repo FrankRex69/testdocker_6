@@ -7,6 +7,6 @@ services:
       target: '${TARGET}'
     entrypoint: bash -c '${COMMAND}'
     ports:
-      - '${PORT_HOST}:${PORT_APP}'
+      - 3897:4000
     volumes:
       - './:/app'
