@@ -9,7 +9,9 @@ console.log(port_app);
 console.log(`http://localhost:${port_host}`);
 
 app.get('/', function (req, res) {
+
   res.send('Hello World test Docker !?? XYZ ! cvb ==?????rrrWWW')
+
 })
 
 app.listen(port_app, host);
